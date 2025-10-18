@@ -1,0 +1,64 @@
+<app-navbar />
+
+<div class="container mt-3">
+    <h3>Consulta de tarefas</h3>
+    <p>Gerencie as tarefas da sua agenda</p>
+
+
+    @if(tarefas().length > 0) {
+
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th>Data</th>
+                <th>Início</th>
+                <th>Fim</th>
+                <th>Nome da tarefa</th>
+                <th>Prioridade</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(tarefa of tarefas(); track tarefa.id) {
+            <tr>
+                <td>{{tarefa.data}}</td>
+                <td>{{tarefa.hora_inicio}}</td>
+                <td>{{tarefa.hora_fim}}</td>
+                <td>{{tarefa.nome}}</td>
+                <td>
+                    @switch (tarefa.prioridade) {
+                    @case ('Alta') {
+                    <span class="badge bg-danger">ALTA</span>
+                    }
+                    @case ('Média') {
+                    <span class="badge bg-warning">MÉDIA</span>
+                    }
+                    @case ('Baixa') {
+                    <span class="badge bg-success">BAIXA</span>
+                    }
+                    }
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-outline-primary me-2">Editar</button>
+                    <button class="btn btn-sm btn-outline-danger">Excluir</button>
+                </td>
+            </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="6">
+                    Quantidade de tarefas: {{tarefas().length}}
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+
+
+    } @else {
+    <div class="alert alert-warning">
+        Nenhuma tarefa foi encontrada em sua agenda.
+    </div>
+    }
+
+</div>

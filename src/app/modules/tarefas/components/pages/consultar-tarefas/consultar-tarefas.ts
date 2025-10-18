@@ -4,7 +4,7 @@ import { Tarefa } from '../../../core/models/tarefa';
 
 @Component({
   selector: 'app-consultar-tarefas',
-  imports: [],
+  standalone: false,
   templateUrl: './consultar-tarefas.html',
   styleUrl: './consultar-tarefas.css'
 })
