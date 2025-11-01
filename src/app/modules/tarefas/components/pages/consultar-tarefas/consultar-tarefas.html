@@ -4,7 +4,6 @@
     <h3>Consulta de tarefas</h3>
     <p>Gerencie as tarefas da sua agenda</p>
 
-
     @if(tarefas().length > 0) {
 
     <table class="table table-sm">
@@ -15,11 +14,12 @@
                 <th>Fim</th>
                 <th>Nome da tarefa</th>
                 <th>Prioridade</th>
-                <th>Ações</th>
+                <th>Finalizado</th>
+                <th width="140">Ações</th>
             </tr>
         </thead>
         <tbody>
-            @for(tarefa of tarefas(); track tarefa.id) {
+            @for(tarefa of tarefas() | paginate: { itemsPerPage: 5, currentPage: pagina }; track tarefa.id) {
             <tr>
                 <td>{{tarefa.data}}</td>
                 <td>{{tarefa.hora_inicio}}</td>
@@ -39,26 +39,44 @@
                     }
                 </td>
                 <td>
-                    <button class="btn btn-sm btn-outline-primary me-2">Editar</button>
-                    <button class="btn btn-sm btn-outline-danger">Excluir</button>
+                    @if(tarefa.finalizado) {
+                        <span class="badge bg-primary">SIM</span>
+                    }
+                    @else {
+                        <span class="badge bg-secondary">NÃO</span>
+                    }
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-outline-primary me-2">
+                        Editar
+                    </button>
+                    <button class="btn btn-sm btn-outline-danger" (click)="onDelete(tarefa.id)">
+                        Excluir
+                    </button>
                 </td>
             </tr>
             }
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="6">
+                <td colspan="7">
                     Quantidade de tarefas: {{tarefas().length}}
                 </td>
             </tr>
         </tfoot>
     </table>
 
+    <div class="text-center">
+        <pagination-controls
+            previousLabel="Página anterior"
+            nextLabel="Próxima página"
+            (pageChange)="pageChange($event)"
+        />
+    </div>
 
     } @else {
     <div class="alert alert-warning">
         Nenhuma tarefa foi encontrada em sua agenda.
     </div>
     }
-
 </div>

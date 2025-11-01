@@ -6,6 +6,9 @@ import { ConsultarTarefas } from "./components/pages/consultar-tarefas/consultar
 import { EditarTarefas } from "./components/pages/editar-tarefas/editar-tarefas";
 import { RouterLink } from "@angular/router";
 import { TarefasRoutingModule } from "./tarefas-routing.module";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { CommonModule } from "@angular/common";
+import { NgxPaginationModule } from "ngx-pagination";
 
 @NgModule({
     declarations: [
@@ -20,7 +23,11 @@ import { TarefasRoutingModule } from "./tarefas-routing.module";
     imports: [
         //importações de outros módulos
         RouterLink,
-        TarefasRoutingModule
+        TarefasRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        CommonModule,
+        NgxPaginationModule
     ]
 })
 export class TarefasModule { }

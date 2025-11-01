@@ -1,6 +1,116 @@
 <app-navbar />
-    
-    <div class="container mt-3">
-        <h3>Cadastro de tarefas</h3>
-        <p>Adicione tarefas em sua agenda</p>
-    </div>
+
+<div class="container mt-3">
+
+    <h3>Cadastro de tarefas</h3>
+    <p>Adicione tarefas em sua agenda.</p>
+
+    <hr />
+
+    @if(mensagem()) {
+        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+            <strong>{{ mensagem() }}</strong>
+            <button type="button" class="btn-close" (click)="mensagem.set('')" aria-label="Close"></button>
+        </div>
+    }
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label>Nome da tarefa:</label>
+                <input type="text" formControlName="nome" class="form-control" placeholder="Digite aqui" />
+                @if(form.get('nome')?.touched && form.get('nome')?.invalid) {
+                <div class="text-danger mt-1">
+                    @if(form.get('nome')?.errors?.['required']) {
+                    <small>O nome da tarefa é obrigatório.</small>
+                    }
+                    @if(form.get('nome')?.errors?.['minlength']) {
+                    <small>O nome da tarefa deve ter no mínimo 6 caracteres.</small>
+                    }
+                </div>
+                }
+            </div>
+            <div class="col-md-2">
+                <label>Data:</label>
+                <input type="date" formControlName="data" class="form-control" />
+                @if(form.get('data')?.touched && form.get('data')?.invalid) {
+                <div class="text-danger mt-1">
+                    @if(form.get('data')?.errors?.['required']) {
+                    <small>A data da tarefa é obrigatória.</small>
+                    }
+                </div>
+                }
+            </div>
+            <div class="col-md-2">
+                <label>Hora início:</label>
+                <input type="time" formControlName="hora_inicio" class="form-control" />
+                @if(form.get('hora_inicio')?.touched && form.get('hora_inicio')?.invalid) {
+                <div class="text-danger mt-1">
+                    @if(form.get('hora_inicio')?.errors?.['required']) {
+                    <small>A hora de início da tarefa é obrigatória.</small>
+                    }
+                </div>
+                }
+            </div>
+            <div class="col-md-2">
+                <label>Hora fim:</label>
+                <input type="time" formControlName="hora_fim" class="form-control" />
+                @if(form.get('hora_fim')?.touched && form.get('hora_fim')?.invalid) {
+                <div class="text-danger mt-1">
+                    @if(form.get('hora_fim')?.errors?.['required']) {
+                    <small>A hora de fim da tarefa é obrigatória.</small>
+                    }
+                    @if(form.get('hora_fim')?.errors?.['horaInvalida']) {
+                    <small>A hora de fim deve ser posterior à hora de início.</small>
+                    }
+                </div>
+                }
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <label>Selecione a prioridade:</label>
+                <select class="form-select" formControlName="prioridade">
+                    <option value="" disabled selected>Escolha uma opção</option>
+                    @for(p of prioridades; track p) {
+                    <option [value]="p">{{ p | uppercase }}</option>
+                    }
+                </select>
+                @if(form.get('prioridade')?.touched && form.get('prioridade')?.invalid) {
+                <div class="text-danger mt-1">
+                    @if(form.get('prioridade')?.errors?.['required']) {
+                    <small>A prioridade da tarefa é obrigatória.</small>
+                    }
+                </div>
+                }
+            </div>
+            <div class="col-md-3">
+                <div class="form-check mt-4">
+                    <input type="checkbox" formControlName="finalizado" class="form-check-input"
+                        id="finalizadoCheckbox" />
+                    <label for="finalizadoCheckbox" class="form-check-label fw-build">
+                        Finalizado?
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-primary">
+                    Salvar tarefa
+                </button>
+            </div>
+        </div>
+
+    </form>
+
+    <!--
+    @if(form.valid) {
+    <pre>{{ form.value | json }}</pre>
+    }
+    -->
+
+</div>
