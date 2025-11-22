@@ -1,6 +1,20 @@
 <app-navbar />
-    
+
+
 <div class="container mt-3">
     <h3>Dashboard de tarefas</h3>
-    <p>Resumo das tarefas da agenda</p>
+    <p>Resumo das tarefas da agenda.</p>
+
+
+    <div class="row">
+        <div class="col-md-6">
+            <div [chart]="graficoDonut()"></div>
+        </div>
+        <div class="col-md-6">
+            <div [chart]="graficoColunas()"></div>
+        </div>
+    </div>
+
+
 </div>
+

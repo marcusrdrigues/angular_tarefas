@@ -1,22 +1,22 @@
 {
   "tarefas": [
     {
-      "id": "1",
       "nome": "Aula de Angular",
       "data": "2025-10-04",
       "hora_inicio": "07:00",
       "hora_fim": "09:00",
       "prioridade": "Alta",
-      "finalizado": false
+      "finalizado": true,
+      "id": "1"
     },
     {
-      "id": "2",
       "nome": "Reunião com equipe de projeto",
       "data": "2025-10-04",
       "hora_inicio": "10:00",
-      "hora_fim": "11:30",
+      "hora_fim": "12:45",
       "prioridade": "Média",
-      "finalizado": false
+      "finalizado": false,
+      "id": "2"
     },
     {
       "id": "3",
@@ -28,13 +28,13 @@
       "finalizado": false
     },
     {
-      "id": "4",
       "nome": "Corrigir exercícios dos alunos",
       "data": "2025-10-05",
       "hora_inicio": "09:00",
       "hora_fim": "11:00",
       "prioridade": "Baixa",
-      "finalizado": false
+      "finalizado": true,
+      "id": "4"
     },
     {
       "id": "5",

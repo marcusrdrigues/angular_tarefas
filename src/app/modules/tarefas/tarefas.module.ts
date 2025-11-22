@@ -9,6 +9,7 @@ import { TarefasRoutingModule } from "./tarefas-routing.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 import { NgxPaginationModule } from "ngx-pagination";
+import { ChartModule } from "angular-highcharts";
 
 @NgModule({
     declarations: [
@@ -27,7 +28,8 @@ import { NgxPaginationModule } from "ngx-pagination";
         FormsModule,
         ReactiveFormsModule,
         CommonModule,
-        NgxPaginationModule
+        NgxPaginationModule,
+        ChartModule
     ]
 })
 export class TarefasModule { }
